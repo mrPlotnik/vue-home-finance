@@ -55,13 +55,12 @@ export default {
   },
   // Метод который мы вызываем при сабмите формы
   mounted () {
-    this.$error('test')
     if (messages[this.$route.query.message]) {
       this.$message(messages[this.$route.query.message])
     }
   },
   methods: {
-    submitHandler () {
+    async submitHandler () {
       // При успешном логине выкинет на главную страницу
       // Если вся форма находится в состоянии "invalid", то мы вызываем метод "$touch()", который позволяет активизировать валидацию и делаем return, что бы в дальнейшем логика данного метода не вызывалась
       if (this.$v.$invalid) {
@@ -72,8 +71,11 @@ export default {
         email: this.email,
         password: this.password
       }
-      console.log(formData)
-      this.$router.push('/')
+      //
+      try {
+        await this.$store.dispatch('login', formData)
+        this.$router.push('/')
+      } catch (e) {}
     }
   }
 }
