@@ -38,6 +38,7 @@ form.card.auth-card(@submit.prevent="submitHandler")
 <script>
 // Импортируем валидаторы из "vuelidate"
 import { email, required, minLength } from 'vuelidate/lib/validators'
+import messages from '@/utils/messages'
 
 export default {
   // Имя данной страницы
@@ -53,6 +54,12 @@ export default {
     password: { required, minLength: minLength(6) }
   },
   // Метод который мы вызываем при сабмите формы
+  mounted () {
+    this.$error('test')
+    if (messages[this.$route.query.message]) {
+      this.$message(messages[this.$route.query.message])
+    }
+  },
   methods: {
     submitHandler () {
       // При успешном логине выкинет на главную страницу
