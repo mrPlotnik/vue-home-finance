@@ -9,6 +9,8 @@ import dateFilter from '@/filters/date.filter'
 // Пагин сообщений
 import messagePlugin from '@/utils/message.plugin'
 // ***
+import Loader from './components/app/Loader'
+// ***
 import './registerServiceWorker'
 // Плагины, анимация и пр.
 import 'materialize-css/dist/js/materialize.min'
@@ -25,6 +27,8 @@ Vue.use(messagePlugin)
 Vue.use(Vuelidate)
 // Регистрируем фильтр для даты с названием "Date"
 Vue.filter('date', dateFilter)
+// Регистрируем глобально Loader.vue
+Vue.component('Loader', Loader)
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional

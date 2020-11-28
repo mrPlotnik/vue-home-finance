@@ -25,6 +25,12 @@ export default {
   data: () => ({
     isOpen: true
   }),
+  async mounted () {
+    // Если store пустой, тогда делаем запрос на получение информации с сервера
+    if (!Object.keys(this.$store.getters.info).length) {
+      await this.$store.dispatch('fetchInfo')
+    }
+  },
   components: {
     Navbar, Sidebar
   }
