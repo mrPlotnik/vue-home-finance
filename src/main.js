@@ -6,6 +6,8 @@ import router from './router'
 import store from './store'
 // Фильтр даты
 import dateFilter from '@/filters/date.filter'
+// Фильтр валют
+import currencyFilter from '@/filters/currency.filter'
 // Пагин сообщений
 import messagePlugin from '@/utils/message.plugin'
 // ***
@@ -25,8 +27,10 @@ Vue.config.productionTip = false
 Vue.use(messagePlugin)
 // Регистрируем плагин "Vuelidate"
 Vue.use(Vuelidate)
-// Регистрируем фильтр для даты с названием "Date"
+// Регистрируем фильтр для даты
 Vue.filter('date', dateFilter)
+// Регистрируем фильтр для даты
+Vue.filter('currency', currencyFilter)
 // Регистрируем глобально Loader.vue
 Vue.component('Loader', Loader)
 
