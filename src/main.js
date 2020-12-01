@@ -14,9 +14,6 @@ import messagePlugin from '@/utils/message.plugin'
 import Loader from './components/app/Loader'
 // ***
 import './registerServiceWorker'
-// Плагины, анимация и пр.
-import 'materialize-css/dist/js/materialize.min'
-//
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/database'

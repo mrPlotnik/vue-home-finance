@@ -28,7 +28,7 @@ nav.navbar.orange.lighten-1
 </template>
 
 <script>
-import * as M from 'materialize-css/dist/js/materialize'
+import M from 'materialize-css'
 export default {
   data: () => ({
     date: new Date(),
