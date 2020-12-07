@@ -15,6 +15,7 @@
                 :value="c.id"
               ) {{ c.title }}
             label Выберите категорию
+
           .input-field
             input#name(
               type="text"
@@ -25,16 +26,21 @@
             span.helper-text.invalid(
               v-if="$v.title.$dirty && !$v.title.required"
             ) Введите название категории
+
           .input-field
             input#limit(
               type="number"
               v-model.number="limit"
-              :class="{invalid: $v.limit.$dirty && !$v.limit.minValue}"
+              :class="{invalid: ($v.limit.$dirty && !$v.limit.minValue) || ($v.limit.$dirty && !$v.limit.required)}"
             )
             label(for="limit") Лимит
             span.helper-text.invalid(
-              v-if="($v.limit.$dirty && !$v.limit.minValue) || $v.limit.required"
+              v-if="$v.limit.$dirty && !$v.limit.minValue"
             ) Минимальное значение {{ $v.limit.$params.minValue.min }}
+            span.helper-text.invalid(
+              v-else-if="$v.limit.$dirty && !$v.limit.required"
+            ) Введите значение
+
           button.btn.waves-effect.waves-light(type="submit")
             | Обновить
             i.material-icons.right send
@@ -51,6 +57,7 @@ export default {
       type: Array,
       required: true
     }
+
   },
   // Делаем модели
   data: () => ({
@@ -59,10 +66,12 @@ export default {
     limit: 100,
     current: null
   }),
+
   validations: {
     title: { required },
-    limit: { minValue: minValue(100) }
+    limit: { required, minValue: minValue(100) }
   },
+
   watch: {
     // Следим за моделью current (текущая категория)
     current (catId) {
@@ -72,6 +81,7 @@ export default {
       this.limit = limit
     }
   },
+
   created () {
     // Когда id категории совпадет c id из state, метод вернет индекс где это произошло
     let index = this.categories.findIndex(c => c.id === this.categoryFromState)
@@ -82,16 +92,20 @@ export default {
     this.title = title
     this.limit = limit
   },
+
   computed: {
     // Свойство подтягивает id текущей категории из геттера хранилища
     categoryFromState () {
       return this.$store.getters.currentCategoryId
     }
   },
+
   methods: {
     async submitHandler () {
-      if (this.$v.invalid) {
-        this.$v.touch()
+      // Если вся форма находится в состоянии "invalid", то мы вызываем метод "$touch()", который позволяет активизировать валидацию и делаем return, что бы в дальнейшем логика данного метода не вызывалась
+      if (this.$v.$invalid) {
+        this.$v.$touch()
+        this.$message('Форма невалидна')
         return
       }
       // Если форма валидна...
@@ -109,11 +123,13 @@ export default {
       } catch (e) {}
     }
   },
+
   mounted () {
     // Оживляем select (materialize-css)
     this.select = M.FormSelect.init(this.$refs.select)
     M.updateTextFields()
   },
+
   destroyed () {
     // Позаботимся о возможных утечках памяти
     // Если в модели select что-то есть и у нее есть метод destroy()

@@ -10,7 +10,7 @@ form.card.auth-card(@submit.prevent="submitHandler")
       //- Состояние "$dirty" говорит о том, что мы уже пытались что-то вписывать и написали не правильно
       input#email(
         type="text"
-        v-model.trim="$v.email.$model"
+        v-model.trim="email"
         :class="{invalid: ($v.email.$dirty && !$v.email.required) || ($v.email.$dirty && !$v.email.email)}"
       )
       label(for="email") Email
@@ -20,7 +20,7 @@ form.card.auth-card(@submit.prevent="submitHandler")
     .input-field
       input#password(
         type="password"
-        v-model.trim="$v.password.$model"
+        v-model.trim="password"
         :class="{invalid: ($v.password.$dirty && !$v.password.required) || ($v.password.$dirty && !$v.password.minLength)}"
       )
       label(for="password") Пароль
@@ -67,11 +67,12 @@ export default {
         this.$v.$touch()
         return
       }
+
       const formData = {
         email: this.email,
         password: this.password
       }
-      //
+
       try {
         await this.$store.dispatch('login', formData)
         this.$router.push('/')

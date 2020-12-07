@@ -14,16 +14,21 @@
         span.helper-text.invalid(
           v-if="$v.title.$dirty && !$v.title.required"
         ) Введите название категории
+
       .input-field
         input#limit(
           type="number"
-          v-model.number="limit"
-          :class="{invalid: $v.limit.$dirty && !$v.limit.minValue}"
+          v-model.number="$v.limit.$model"
+          :class="{invalid: ($v.limit.$dirty && !$v.limit.minValue) || !$v.limit.required}"
         )
         label(for="limit") Лимит
         span.helper-text.invalid(
-          v-if="($v.limit.$dirty && !$v.limit.minValue) || $v.limit.required"
+          v-if="($v.limit.$dirty && !$v.limit.minValue)"
         ) Минимальное значение {{ $v.limit.$params.minValue.min }}
+        span.helper-text.invalid(
+          v-else-if="!$v.limit.required"
+        ) Введите значение
+
       button.btn.waves-effect.waves-light(type="submit")
         | Создать
         i.material-icons.right send
@@ -43,7 +48,7 @@ export default {
   }),
   validations: {
     title: { required },
-    limit: { minValue: minValue(100) }
+    limit: { required, minValue: minValue(100) }
   },
   mounted () {
     M.updateTextFields()
@@ -52,6 +57,7 @@ export default {
     async submitHandler () {
       if (this.$v.$invalid) {
         this.$v.$touch()
+        this.$message('Форма невалидна')
         return
       }
       try {

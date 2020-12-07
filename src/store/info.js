@@ -16,6 +16,21 @@ export default {
     }
   },
   actions: {
+    async updateInfo ({ dispatch, commit, getters }, toUpdate) {
+      try {
+        // Получаем uid юзера
+        const uid = await dispatch('getUid')
+        // 123
+        const updateData = { ...getters.info, ...toUpdate }
+        await firebase.database().ref(`/users/${uid}/info`).update(updateData)
+        // Вызываем mutation. Пишем инфу в state
+        commit('setInfo', updateData)
+      } catch (e) {
+        commit('setError', e)
+        throw e
+      }
+    },
+
     // Получение данных с сервера
     // Вызывается из MainLayote.vue
     async fetchInfo ({ dispatch, commit }) {
@@ -26,7 +41,10 @@ export default {
         const info = (await firebase.database().ref(`/users/${uid}/info`).once('value')).val()
         // Вызываем mutation. Пишем инфу в state
         commit('setInfo', info)
-      } catch (e) {}
+      } catch (e) {
+        commit('setError', e)
+        throw e
+      }
     }
   },
   getters: {
