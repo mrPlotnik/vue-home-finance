@@ -7,7 +7,7 @@
       .input-field
         input#name(
           type="text"
-          v-model="title"
+          v-model.trim="title"
           :class="{invalid: $v.title.$dirty && !$v.title.required}"
         )
         label(for="name") Название
@@ -18,7 +18,7 @@
       .input-field
         input#limit(
           type="number"
-          v-model.number="$v.limit.$model"
+          v-model.number="limit"
           :class="{invalid: ($v.limit.$dirty && !$v.limit.minValue) || !$v.limit.required}"
         )
         label(for="limit") Лимит

@@ -8,6 +8,8 @@ import store from './store'
 import dateFilter from '@/filters/date.filter'
 // Фильтр валют
 import currencyFilter from '@/filters/currency.filter'
+// -
+import tooltipDirective from '@/directives/tooltip.directive'
 // Пагин сообщений
 import messagePlugin from '@/utils/message.plugin'
 // ***
@@ -28,7 +30,10 @@ Vue.use(Vuelidate)
 Vue.filter('date', dateFilter)
 // Регистрируем фильтр для даты
 Vue.filter('currency', currencyFilter)
+// -
+Vue.directive('tooltip', tooltipDirective)
 // Регистрируем глобально Loader.vue
+
 Vue.component('Loader', Loader)
 
 // Your web app's Firebase configuration

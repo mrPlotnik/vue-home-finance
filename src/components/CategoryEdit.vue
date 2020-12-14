@@ -19,7 +19,7 @@
           .input-field
             input#name(
               type="text"
-              v-model="title"
+              v-model.trim="title"
               :class="{invalid: $v.title.$dirty && !$v.title.required}"
             )
             label(for="name") Название

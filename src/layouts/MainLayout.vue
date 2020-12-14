@@ -14,7 +14,10 @@ div
 
       //- Кнопка "+"
       .fixed-action-btn
-        router-link.btn-floating.btn-large.blue(to="/record")
+        router-link.btn-floating.btn-large.blue(
+          to="/record"
+          v-tooltip="'Создать новую запись'"
+        )
           i.large.material-icons add
 </template>
 
