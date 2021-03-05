@@ -54,10 +54,12 @@ let app
 
 firebase.auth().onAuthStateChanged(() => {
   if (!app) {
+    // Новый экземпляр приложения
     app = new Vue({
       router,
       store,
       render: h => h(App)
+      // Маунтим все в div#app
     }).$mount('#app')
   }
 })

@@ -31,7 +31,7 @@ export default {
     getUid () {
       const user = firebase.auth().currentUser
       // Если в поле user что либо есть, то возвращаем объект user.uid, иначе null
-      return user ? user.uid : null
+      return user ? user.uid : 'null'
     },
     async logout ({ commit }) {
       await firebase.auth().signOut()

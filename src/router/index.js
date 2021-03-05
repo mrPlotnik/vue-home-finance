@@ -1,13 +1,17 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+// Регистрация Router как плагина
 Vue.use(VueRouter)
 
+// Набор роутов
 const routes = [
   {
+    // Главная страница
     path: '/',
     name: 'home',
     meta: { layout: 'main' },
+    // ИзиЛоадинг для ускорения загрузки
     component: () => import('../views/Home.vue')
   },
   {
@@ -62,7 +66,9 @@ const routes = [
 ]
 
 const router = new VueRouter({
+  // Пути со слэшами
   mode: 'history',
+  // Базовый URL
   base: process.env.BASE_URL,
   routes
 })
