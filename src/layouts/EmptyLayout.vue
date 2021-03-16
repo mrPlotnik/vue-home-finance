@@ -1,6 +1,9 @@
 <template lang="pug">
   .grey.darken-1.empty-layout
+
+    //- Рендерим нужный компонент
     router-view
+
 </template>
 <script>
 // Импортируем коды ошибок

@@ -1,6 +1,8 @@
 <template lang="pug">
 div
+
   Loader(v-if="loading")
+
   div(v-else)
     .app-main-layout
 
@@ -10,6 +12,8 @@ div
 
       main.app-content(:class="{full: !isOpen}")
         .app-page
+
+          //- Рендерим нужный компонент
           router-view
 
       //- Кнопка "+"

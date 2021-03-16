@@ -4,16 +4,22 @@ import App from './App.vue'
 
 import router from './router'
 import store from './store'
+
 // Фильтр даты
 import dateFilter from '@/filters/date.filter'
+
 // Фильтр валют
 import currencyFilter from '@/filters/currency.filter'
+
 // -
 import tooltipDirective from '@/directives/tooltip.directive'
+
 // Пагин сообщений
 import messagePlugin from '@/utils/message.plugin'
+
 // ***
 import Loader from './components/app/Loader'
+
 // ***
 import './registerServiceWorker'
 import firebase from 'firebase/app'
@@ -58,6 +64,8 @@ firebase.auth().onAuthStateChanged(() => {
     app = new Vue({
       router,
       store,
+      // Метод h, который рендерит компонент App
+      // Это заглавный компонент, с него все начинается
       render: h => h(App)
       // Маунтим все в div#app
     }).$mount('#app')

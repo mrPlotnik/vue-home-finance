@@ -22,3 +22,6 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+materialize-css подключается отдельно в каждом нужном компоненте. Надо найти решение исправить это
