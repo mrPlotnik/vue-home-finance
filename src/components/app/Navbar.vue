@@ -2,6 +2,8 @@
 nav.navbar.orange.lighten-1
   .nav-wrapper
     .navbar-left
+      //- Добавляя модификатор .prevent избавляемся от дефолтного поведения ссылки
+      //- Передаем событие 'click' в MainLayout c помощью метода $emit
       a(href="#" @click.prevent="$emit('click')")
         i.material-icons.black-text dehaze
       //- Можно писать отдельно date или time

@@ -6,10 +6,17 @@ div
   div(v-else)
     .app-main-layout
 
+      //- Прослушиваеи клик из дочернего компонента Navbar
+      //- И тогглим с true на false
       Navbar(@click="isOpen = !isOpen")
 
+      //- Отображаем Sidebar, если isOpen = true
+      //- Если мы передаем Sidebar`у какую-то модель
+      //- То нужно прописать ему параметр props созначение 'value'
+      //- 'value' и будет соответствовать состоянию isOpen
       Sidebar(v-model="isOpen")
 
+      //- Байндим класс full (растягиваем на всю длину), если isOpen = false
       main.app-content(:class="{full: !isOpen}")
         .app-page
 
@@ -26,6 +33,7 @@ div
 </template>
 
 <script>
+// Импортируем компоненты
 import Navbar from '@/components/app/Navbar'
 import Sidebar from '@/components/app/Sidebar'
 
@@ -42,6 +50,7 @@ export default {
     }
     this.loading = false
   },
+  // Регистрируем компоненты
   components: {
     Navbar, Sidebar
   }
