@@ -25,3 +25,5 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
 materialize-css подключается отдельно в каждом нужном компоненте. Надо найти решение исправить это
+
+Не забыть создать файл .env в конрне с ключом от fixer.io

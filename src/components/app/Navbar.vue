@@ -7,7 +7,8 @@ nav.navbar.orange.lighten-1
       a(href="#" @click.prevent="$emit('click')")
         i.material-icons.black-text dehaze
       //- Можно писать отдельно date или time
-      span.black-text {{date | date('datetime')}}
+      span.black-text {{ date | date('datetime') }}
+
     ul.right.hide-on-small-and-down
       li
         a.dropdown-trigger.black-text(
@@ -21,7 +22,7 @@ nav.navbar.orange.lighten-1
           li
             router-link.black-text(to="/profile")
               i.material-icons account_circle
-              | Профиль12341345
+              | Профиль
           li.divider(tabindex="-1")
           li
             a.black-text(href="#" @click.prevent="logout")
@@ -31,36 +32,45 @@ nav.navbar.orange.lighten-1
 
 <script>
 import M from 'materialize-css'
+
 export default {
   data: () => ({
     date: new Date(),
     interval: null,
     dropdown: null
   }),
+
   methods: {
+    // Выход из системы
     async logout () {
       await this.$store.dispatch('logout')
       this.$router.push('/login?message=logout')
     }
   },
+
   computed: {
     name () {
       return this.$store.getters.info.name
     }
   },
+
   mounted () {
     // Обновление даты каждую секунду
     this.interval = setInterval(() => {
       this.date = new Date()
     }, 1000)
+
+    // Инициализируем Dropdown
     this.dropdown = M.Dropdown.init(this.$refs.dropdown, {
       constrainWidth: false
     })
   },
-  // Очищаем параметры при смене layout, например при logout (для оптимизации)
+
+  // Очищаем параметры при смене layout (для оптимизации)
   beforeDestroy () {
     // Отменяем интервал
     clearInterval(this.interval)
+
     // Убеждаемся, что dropdown ТОЧНО инициализировался (бывают случаи) и только тогда уничтожаем
     if (this.dropdown && this.dropdown.destroy) {
       this.dropdown.destroy()

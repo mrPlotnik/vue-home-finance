@@ -28,6 +28,7 @@ export default {
   async mounted () {
     // Экшн fethCurrency прописан в index.js
     this.currency = await this.$store.dispatch('fetchCurrency')
+    console.log(this.currency)
     // Показываем модель
     this.loading = false
   },
