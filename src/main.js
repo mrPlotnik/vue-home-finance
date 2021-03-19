@@ -30,6 +30,7 @@ Vue.config.productionTip = false
 
 // Регистрируем плагин "messagePlugin"
 Vue.use(messagePlugin)
+
 // Регистрируем плагин "Vuelidate"
 Vue.use(Vuelidate)
 
