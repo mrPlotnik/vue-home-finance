@@ -6,6 +6,8 @@ nav.navbar.orange.lighten-1
       //- Передаем событие 'click' в MainLayout c помощью метода $emit
       a(href="#" @click.prevent="$emit('click')")
         i.material-icons.black-text dehaze
+
+      //- Применяем фильтр к дате через слэш
       //- Можно писать отдельно date или time
       span.black-text {{ date | date('datetime') }}
 

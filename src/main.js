@@ -32,7 +32,9 @@ Vue.config.productionTip = false
 Vue.use(messagePlugin)
 // Регистрируем плагин "Vuelidate"
 Vue.use(Vuelidate)
+
 // Регистрируем фильтр для даты
+// Теперь он в глобальной области видимости
 Vue.filter('date', dateFilter)
 // Регистрируем фильтр для даты
 Vue.filter('currency', currencyFilter)
