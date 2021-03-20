@@ -14,7 +14,7 @@ import currencyFilter from '@/filters/currency.filter'
 // -
 import tooltipDirective from '@/directives/tooltip.directive'
 
-// Пагин сообщений
+// Пагин сообщений. Тосты vuelidate
 import messagePlugin from '@/utils/message.plugin'
 
 // ***
