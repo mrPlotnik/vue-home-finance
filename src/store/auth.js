@@ -2,6 +2,7 @@ import firebase from 'firebase/app'
 
 export default {
   actions: {
+
     async login ({ dispatch, commit }, { email, password }) {
       try {
         await firebase.auth().signInWithEmailAndPassword(email, password)
@@ -10,6 +11,7 @@ export default {
         throw e
       }
     },
+
     async register ({ dispatch, commit }, { email, password, name }) {
       try {
         await firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -26,6 +28,7 @@ export default {
         throw e
       }
     },
+
     // Узнаем uid юзера из fb
     // Вызывается отсюда, в экшене fetchInfo() из info.js
     getUid () {

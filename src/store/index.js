@@ -24,7 +24,6 @@ export default new Vuex.Store({
     async fetchCurrency () {
       // Берем значение из .env
       const key = process.env.VUE_APP_FIXER
-      console.log(key)
       // Делаем запрос, результат заносим в переменную
       const res = await fetch(`http://data.fixer.io/api/latest?access_key=${key}&symbols=USD,EUR,RUB,BTC`)
       // Теперь надо распарсить json и вернуть данные

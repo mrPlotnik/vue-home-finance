@@ -14,7 +14,7 @@
           tr(v-for="cur in currencies" :key="cur")
             td {{ cur }}
             td {{ getCurrency(cur).toFixed(7) }}
-            td {{ date | date('date') }}
+            td {{ date }}
 
 </template>
 

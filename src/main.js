@@ -22,6 +22,8 @@ import Loader from './components/app/Loader'
 
 // ***
 import './registerServiceWorker'
+
+// ***
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/database'
@@ -59,9 +61,12 @@ firebase.initializeApp({
   // measurementId: 'G-1607CMTS2G'
 })
 
+// Заносим результат инициализации приложения в переменную app
 let app
 
+// Ищем локальные данные пользователя, которые позволят поддерживать автоматическую авторизацию
 firebase.auth().onAuthStateChanged(() => {
+  // Инициализируем приложение, только если переменная app не определена (приложение не было инициализированно)
   if (!app) {
     // Новый экземпляр приложения
     app = new Vue({
