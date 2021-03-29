@@ -17,10 +17,12 @@ export default {
     // Вызывается из Categories.vue (родительского)
     async fetchCategories ({ commit, dispatch }) {
       try {
+        // Получаем uid юзера
         const uid = await dispatch('getUid')
-        // Используем .once для получения данных
-        // Этот запрос возвращает объект, который имеет функцию .val, которая позволяет получить данные из базы
-        // На всякий случай, если ничего не возвращается, то это будет пустой объект
+        // Получаем поле categories из таблицы конкретного юзера
+        // .ref - обращение к нужному полю
+        // .once - запрос на получение данных из поля
+        // .val - извлекает значение
         const categories = (await firebase.database().ref(`/users/${uid}/categories`).once('value')).val() || {}
         // console.log(categories) // Возвращает объект, а нам нужен массив с такими же значениями
         // Нужна трансформация
@@ -36,9 +38,9 @@ export default {
         // })
         // return cats
         //
+
         // 2й способ. Лаконичный. Делает тоже самое
         const cats = Object.keys(categories).map(key => ({ ...categories[key], id: key }))
-        // console.log(cats)
         return cats
       } catch (e) {
         commit('setError', e)
@@ -48,6 +50,7 @@ export default {
 
     async updateCategory ({ commit, dispatch }, { title, limit, id }) {
       try {
+        // Получаем uid юзера
         const uid = await dispatch('getUid')
         await firebase.database().ref(`/users/${uid}/categories`).child(id).update({ title, limit })
         commit('setCurrentCategory', id)

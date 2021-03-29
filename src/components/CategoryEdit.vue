@@ -3,7 +3,9 @@
       div
         .page-subtitle
           h4 Редактировать
+
         form(@submit.prevent="submitHandler")
+
           .input-field
             select(
               ref="select"
@@ -48,7 +50,6 @@
 
 <script>
 /* global M */
-/* eslint no-undef: "error" */
 import { required, minValue } from 'vuelidate/lib/validators'
 
 export default {
@@ -62,36 +63,19 @@ export default {
   },
   // Делаем модели
   data: () => ({
+
+    // Здесь хранится селект (для правильной отрисовки, через materialize-css)
     select: null,
+    // Текущая (выбранная) категория в списке
+    current: null,
     title: '',
-    limit: 100,
-    current: null
+    limit: 100
+
   }),
 
   validations: {
     title: { required },
     limit: { required, minValue: minValue(100) }
-  },
-
-  watch: {
-    // Следим за моделью current (текущая категория)
-    current (catId) {
-      // console.log(catId)
-      const { title, limit } = this.categories.find(c => c.id === catId)
-      this.title = title
-      this.limit = limit
-    }
-  },
-
-  created () {
-    // Когда id категории совпадет c id из state, метод вернет индекс где это произошло
-    let index = this.categories.findIndex(c => c.id === this.categoryFromState)
-    // Когда state пустой (при перврй отрисовке) отображаем с нулевого индекса
-    index = index >= 0 ? index : 0
-    const { id, title, limit } = this.categories[index]
-    this.current = id
-    this.title = title
-    this.limit = limit
   },
 
   computed: {
@@ -111,7 +95,6 @@ export default {
       }
       // Если форма валидна...
       // Формируем новый объект
-
       try {
         const categoryData = {
           id: this.current,
@@ -120,13 +103,39 @@ export default {
         }
         await this.$store.dispatch('updateCategory', categoryData)
         this.$message('Категория успешно обновлена')
+        // Эмитим событие, чтобы его мог слушать родитель и передаем объект
+        // Делаем это для того чтобы после апдейта формы обновлялись данные на фронтенде
         this.$emit('updated', categoryData)
       } catch (e) {}
     }
   },
 
+  watch: {
+    // Следим за моделью current (текущая категория)
+    current (catId) {
+      // При выборе селекта его значения передаются в модели
+      // Ищем категорию, которая соответствует id модели в select и забираем у нее необходимые поля
+      const { title, limit } = this.categories.find(c => c.id === catId)
+      this.title = title
+      this.limit = limit
+      console.log('Это работает watch. ID = ' + catId + ' Название = ' + this.title)
+    }
+  },
+
+  created () {
+    // Когда id категории совпадет c id из state, метод вернет индекс где это произошло
+    let index = this.categories.findIndex(c => c.id === this.categoryFromState)
+    // Когда state пустой (при перврй отрисовке) отображаем с нулевого индекса
+    index = index >= 0 ? index : 0
+    // Получаем поля нужной категории
+    const { id, title, limit } = this.categories[index]
+    this.current = id
+    this.title = title
+    this.limit = limit
+  },
+
   mounted () {
-    // Оживляем select (materialize-css)
+    // Оживляем select, чтобы не было наложений
     this.select = M.FormSelect.init(this.$refs.select)
     M.updateTextFields()
   },
