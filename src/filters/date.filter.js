@@ -20,7 +20,5 @@ export default function dateFilter (value, format = 'date') {
 
   // Intl.DateTimeFormat - яыкозависимое форматирование даты и времени
   //  В уроке мне не ясно почему автор создает новую дату
-  // return new Intl.DateTimeFormat('ru-RU', options).format(new Date(value))
-
-  return new Intl.DateTimeFormat('ru-RU', options).format(value)
+  return new Intl.DateTimeFormat('ru-RU', options).format(new Date(value))
 }

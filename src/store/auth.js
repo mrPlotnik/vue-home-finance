@@ -3,6 +3,7 @@ import firebase from 'firebase/app'
 export default {
   actions: {
 
+    // Логин в систему
     async login ({ dispatch, commit }, { email, password }) {
       try {
         await firebase.auth().signInWithEmailAndPassword(email, password)
@@ -12,6 +13,7 @@ export default {
       }
     },
 
+    // Регистрация в системе
     async register ({ dispatch, commit }, { email, password, name }) {
       try {
         // Создаем нового пользователя
@@ -43,7 +45,7 @@ export default {
     // Выход
     async logout ({ commit }) {
       await firebase.auth().signOut()
-      // Чистим информацию пользователя
+      // Чистим данные пользователя
       commit('clearInfo')
     }
   }

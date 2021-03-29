@@ -12,21 +12,30 @@
 
 <script>
 export default {
+
   // Принимаем данные
   props: ['rates'],
+
   data: () => ({
     currencies: ['RUB', 'USD', 'EUR']
   }),
+
   computed: {
+
     // Сейчас основная валюта это EUR, исправляем на RUB
     base () {
       return this.$store.getters.info.bill / (this.rates.RUB / this.rates.EUR)
     }
+
   },
+
   methods: {
+
     getCurrency (currency) {
       return Math.floor(this.base * this.rates[currency])
     }
+
   }
+
 }
 </script>

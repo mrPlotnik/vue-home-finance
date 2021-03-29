@@ -38,18 +38,24 @@ import Navbar from '@/components/app/Navbar'
 import Sidebar from '@/components/app/Sidebar'
 
 export default {
+
   name: 'main-layout',
+
   data: () => ({
     isOpen: true,
     loading: true
   }),
+
   async mounted () {
     // Если store пустой, тогда делаем запрос на получение информации с сервера
+    // Object.keys возвращает массив, проверяем его длинну
+    // Если .lenght = 0, тогда делаем запрос
     if (!Object.keys(this.$store.getters.info).length) {
       await this.$store.dispatch('fetchInfo')
     }
     this.loading = false
   },
+
   // Регистрируем компоненты
   components: {
     Navbar, Sidebar

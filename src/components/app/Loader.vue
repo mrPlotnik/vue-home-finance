@@ -1,4 +1,5 @@
 <template lang="pug">
+
 .app-loader
   .preloader-wrapper.active
     .spinner-layer(:class="color")
