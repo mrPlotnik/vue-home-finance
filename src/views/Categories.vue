@@ -9,7 +9,10 @@ div
 
     .row(v-else)
 
+      //- Если произойдет событие @created, то вызываем метод addNewCategory
+      //- Событие происходит в  дочернем компоненте CategoryCreate
       CategoryCreate(@created="addNewCategory")
+
       CategoryEdit(
         v-if="categories.length"
         :categories="categories"
@@ -50,6 +53,8 @@ export default {
   },
 
   methods: {
+
+    // Добавляем только что созданную категорию в конец массива
     addNewCategory (category) {
       this.categories.push(category)
       // console.log(this.categories)

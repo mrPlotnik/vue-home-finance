@@ -23,17 +23,23 @@ import Loader from './components/app/Loader'
 // ***
 import './registerServiceWorker'
 
-// ***
+// Импортируем firebase
+// И его модули. Для авторизации и базы данных
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/database'
+
+//
+import M from 'materialize-css'
+Vue.use(M)
 
 Vue.config.productionTip = false
 
 // Регистрируем плагин "messagePlugin"
 Vue.use(messagePlugin)
 
-// Регистрируем плагин "Vuelidate"
+// Регистрируем глобально плагин "Vuelidate"
+// Без него не работает $v
 Vue.use(Vuelidate)
 
 // Регистрируем фильтр для даты

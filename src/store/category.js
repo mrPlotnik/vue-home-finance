@@ -10,7 +10,9 @@ export default {
       state.currentCategoryId = currentCategoryId
     }
   },
+
   actions: {
+
     // Получаем список категорий с сервера
     // Вызывается из Categories.vue (родительского)
     async fetchCategories ({ commit, dispatch }) {
@@ -43,6 +45,7 @@ export default {
         throw e
       }
     },
+
     async updateCategory ({ commit, dispatch }, { title, limit, id }) {
       try {
         const uid = await dispatch('getUid')
@@ -53,9 +56,14 @@ export default {
         throw e
       }
     },
+
     async createCategory ({ commit, dispatch }, { title, limit }) {
       try {
+        // Получаем uid юзера
         const uid = await dispatch('getUid')
+        // Создаем категорию на сервере и возвращаем нужные значения для отрисовки на фронтенде
+        // .ref - обращение к нужному полю
+        // .push - положить значение
         const category = await firebase.database().ref(`/users/${uid}/categories`).push({ title, limit })
         return { title, limit, id: category.key }
       } catch (e) {
@@ -63,6 +71,7 @@ export default {
         throw e
       }
     }
+
   },
   getters: {
     currentCategoryId: s => s.currentCategoryId

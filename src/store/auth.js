@@ -35,7 +35,9 @@ export default {
     },
 
     // Узнаем uid юзера из fb
-    // Вызывается отсюда, в экшене fetchInfo() из info.js
+    // Вызывается отсюда, а также...
+    // из экшена fetchInfo() из info.js
+    // из экшенов updateCategory(), createCategory(), fetchCategories() из category.js
     getUid () {
       const user = firebase.auth().currentUser
       // Если в поле user что либо есть, то возвращаем объект user.uid, иначе null

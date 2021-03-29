@@ -47,7 +47,8 @@
 </template>
 
 <script>
-import M from 'materialize-css'
+/* global M */
+/* eslint no-undef: "error" */
 import { required, minValue } from 'vuelidate/lib/validators'
 
 export default {

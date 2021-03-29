@@ -33,7 +33,7 @@ nav.navbar.orange.lighten-1
 </template>
 
 <script>
-import M from 'materialize-css'
+/* global M */
 
 export default {
   data: () => ({

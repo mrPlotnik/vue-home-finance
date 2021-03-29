@@ -1,4 +1,5 @@
-import M from 'materialize-css'
+/* global M */
+/* eslint no-undef: "error" */
 
 export default {
   bind (el, { value }) {

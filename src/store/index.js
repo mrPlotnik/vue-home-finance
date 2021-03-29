@@ -18,6 +18,7 @@ export default new Vuex.Store({
     error: null
 
   },
+
   mutations: {
 
     // Мутация, которая позволяет менять значение ошибки

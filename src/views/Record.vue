@@ -70,7 +70,8 @@ div
 </template>
 
 <script>
-import M from 'materialize-css'
+/* global M */
+/* eslint no-undef: "error" */
 import { required, minValue } from 'vuelidate/lib/validators'
 // Импортируем функцию, которая позволяет в автом-м режиме получать опред-1 геттер
 import { mapGetters } from 'vuex'
