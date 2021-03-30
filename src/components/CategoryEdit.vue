@@ -63,14 +63,12 @@ export default {
   },
   // Делаем модели
   data: () => ({
-
     // Здесь хранится селект (для правильной отрисовки, через materialize-css)
     select: null,
     // Текущая (выбранная) категория в списке
     current: null,
     title: '',
     limit: 100
-
   }),
 
   validations: {
@@ -137,6 +135,7 @@ export default {
   mounted () {
     // Оживляем select, чтобы не было наложений
     this.select = M.FormSelect.init(this.$refs.select)
+    // Решение проблемы с перекрытием label
     M.updateTextFields()
   },
 

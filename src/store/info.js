@@ -29,10 +29,10 @@ export default {
       try {
         // Получаем uid юзера
         const uid = await dispatch('getUid')
-        // 123
+        // Разворачиваем результат геттера и то, что нужно обновить
         const updateData = { ...getters.info, ...toUpdate }
         await firebase.database().ref(`/users/${uid}/info`).update(updateData)
-        // Вызываем mutation. Пишем инфу в state
+        // Вызываем mutation. Пишем инфу в state. Обновляем на фронте
         commit('setInfo', updateData)
       } catch (e) {
         commit('setError', e)

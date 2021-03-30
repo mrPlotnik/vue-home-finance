@@ -4,7 +4,11 @@ export default {
   actions: {
     async createRecord ({ dispatch, commit }, record) {
       try {
+        // Получаем uid юзера
         const uid = await dispatch('getUid')
+        // Создаем новую запись на сервере
+        // .ref - обращение к нужному полю
+        // .push - положить значение
         return await firebase.database().ref(`/users/${uid}/records`).push(record)
       } catch (e) {
         commit('setError', e)

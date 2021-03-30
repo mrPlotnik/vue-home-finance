@@ -9,6 +9,7 @@ div
     router-link(to="/categories") Добавить новую категорию
 
   form.form(v-else @submit.prevent="submitHandler")
+
     .input-field
       select(
         v-model="category"
@@ -71,29 +72,38 @@ div
 
 <script>
 /* global M */
-/* eslint no-undef: "error" */
+
+// Импортируем валидаторы
 import { required, minValue } from 'vuelidate/lib/validators'
-// Импортируем функцию, которая позволяет в автом-м режиме получать опред-1 геттер
+// Импортируем функцию, которая позволяет в автоматическом режиме получать определенный геттер
 import { mapGetters } from 'vuex'
 
 export default {
   name: 'record',
   data: () => ({
     loading: true,
+    // Здесь хранится селект (для правильной отрисовки, через materialize-css)
     select: null,
+    // Список категорий (получакм с сервера)
     categories: [],
+    // Текущая категория (для показа в инпуте)
     category: null,
+    // Тип статьи. Расход или доход
     type: 'outcome',
+    // Сумма расхода
     amount: 1,
+    // Описание статьи расхода
     description: ''
   }),
 
+  // Указываем какие поля будем валидировать
   validations: {
     amount: { required, minValue: minValue(1) },
     description: { required }
   },
 
   async mounted () {
+    // Получаем список категорий с сервера
     this.categories = await this.$store.dispatch('fetchCategories')
     this.loading = false
 
@@ -102,15 +112,17 @@ export default {
       this.category = this.categories[0].id
     }
 
-    // Оживляем select (materialize-css)
     this.$nextTick(() => {
+      // Оживляем select, чтобы не было наложений
       this.select = M.FormSelect.init(this.$refs.select)
+      // Решение проблемы с перекрытием label
       M.updateTextFields()
     })
   },
 
   computed: {
     ...mapGetters(['info']),
+
     canCreateRecord () {
       // Если это доход, то запись можно сделать всегда
       if (this.type === 'income') {
@@ -132,6 +144,7 @@ export default {
       // Выясняем, может ли данный человек создать новую запись
       if (this.canCreateRecord) {
         try {
+          // Создаем объект и отправляем его на сервер
           await this.$store.dispatch('createRecord', {
             categoryId: this.category,
             amount: this.amount,
@@ -145,7 +158,7 @@ export default {
             ? this.info.bill + this.amount
             : this.info.bill - this.amount
 
-          // Обновляем на сервере
+          // Обновляем состояние счета на сервере
           await this.$store.dispatch('updateInfo', { bill })
           this.$message('Запись успешно создана')
 
