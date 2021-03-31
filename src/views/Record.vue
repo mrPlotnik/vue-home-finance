@@ -102,24 +102,6 @@ export default {
     description: { required }
   },
 
-  async mounted () {
-    // Получаем список категорий с сервера
-    this.categories = await this.$store.dispatch('fetchCategories')
-    this.loading = false
-
-    // Показываем первую категорию из массива
-    if (this.categories.length) {
-      this.category = this.categories[0].id
-    }
-
-    this.$nextTick(() => {
-      // Оживляем select, чтобы не было наложений
-      this.select = M.FormSelect.init(this.$refs.select)
-      // Решение проблемы с перекрытием label
-      M.updateTextFields()
-    })
-  },
-
   computed: {
     ...mapGetters(['info']),
 
@@ -171,6 +153,24 @@ export default {
         this.$message(`Недостаточно средст на счете (${this.amount - this.info.bill})`)
       }
     }
+  },
+
+  async mounted () {
+    // Получаем список категорий с сервера
+    this.categories = await this.$store.dispatch('fetchCategories')
+    this.loading = false
+
+    // Показываем первую категорию из массива
+    if (this.categories.length) {
+      this.category = this.categories[0].id
+    }
+
+    this.$nextTick(() => {
+      // Оживляем select, чтобы не было наложений
+      this.select = M.FormSelect.init(this.$refs.select)
+      // Решение проблемы с перекрытием label
+      M.updateTextFields()
+    })
   },
 
   destroyed () {

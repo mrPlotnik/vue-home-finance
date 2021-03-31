@@ -16,6 +16,7 @@ export default {
       }
     },
 
+    // Загружаем записи с сервера
     // Вызывается из Planning.vue
     async fetchRecords ({ dispatch, commit }) {
       try {
@@ -26,6 +27,7 @@ export default {
         const records = (await firebase.database().ref(`/users/${uid}/records`).once('value')).val() || {}
         // Приводим к массиву
         const cats = Object.keys(records).map(key => ({ ...records[key], id: key }))
+        console.log(cats)
         return cats
       } catch (e) {
         commit('setError', e)
