@@ -36,6 +36,7 @@ div
 // Импортируем компоненты
 import Navbar from '@/components/app/Navbar'
 import Sidebar from '@/components/app/Sidebar'
+import messages from '@/utils/messages'
 
 export default {
 
@@ -59,6 +60,22 @@ export default {
   // Регистрируем компоненты
   components: {
     Navbar, Sidebar
+  },
+
+  // Следим за наличием ошибок
+  // Тут следует понять и запомнить одну вещь
+  // watch - следит за свойствами, и когда оно меняется, то выполняет функцию
+  // computed - вычисляет значение свойства, которое может зависеть от других свойств, но делает это лишь тогда, когда какое-то из них изменилось.
+  computed: {
+    error () {
+      return this.$store.getters.error
+    }
+  },
+  watch: {
+    error (fbError) {
+      this.$error(messages[fbError.code] || 'Что-то пошло не так')
+    }
   }
+
 }
 </script>
