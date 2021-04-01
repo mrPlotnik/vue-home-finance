@@ -27,12 +27,35 @@ export default {
         const records = (await firebase.database().ref(`/users/${uid}/records`).once('value')).val() || {}
         // Приводим к массиву
         const cats = Object.keys(records).map(key => ({ ...records[key], id: key }))
-        console.log(cats)
         return cats
       } catch (e) {
         commit('setError', e)
         throw e
       }
+    },
+
+    async fetchCategoryById ({ dispatch, commit }, id) {
+      console.log('🚀 ~ file: record.js ~ line 38 ~ fetchCategoryById ~ id', id)
+      try {
+        const uid = await dispatch('getUid')
+        const category = (await firebase.database().ref(`/users/${uid}/categories`).child(id).once('value')).val() || {}
+        return { ...category, id: id }
+      } catch (e) {
+        commit('setError', e)
+        throw e
+      }
+    },
+
+    async fetchRecordById ({ dispatch, commit }, id) {
+      try {
+        const uid = await dispatch('getUid')
+        const record = (await firebase.database().ref(`/users/${uid}/records`).child(id).once('value')).val() || {}
+        return { ...record, id: id }
+      } catch (e) {
+        commit('setError', e)
+        throw e
+      }
     }
+
   }
 }

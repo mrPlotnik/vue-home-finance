@@ -21,7 +21,9 @@ div
 <script>
 
 import HistoryTable from '@/components/HistoryTable'
+
 export default {
+
   name: 'history',
 
   data: () => ({
@@ -51,4 +53,5 @@ export default {
   }
 
 }
+
 </script>
