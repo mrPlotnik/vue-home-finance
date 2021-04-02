@@ -45,7 +45,9 @@ export default {
   }),
 
   async mounted () {
+    // Загружаем все записи с сервера
     this.records = await this.$store.dispatch('fetchRecords')
+    // Загружаем все  с сервера
     const categories = await this.$store.dispatch('fetchCategories')
 
     this.setupPagination(
