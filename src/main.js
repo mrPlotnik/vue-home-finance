@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Vuelidate from 'vuelidate'
+import Paginate from 'vuejs-paginate'
+
 import App from './App.vue'
 
 import router from './router'
@@ -54,6 +56,9 @@ Vue.directive('tooltip', tooltipDirective)
 
 // Регистрируем глобально Loader.vue
 Vue.component('Loader', Loader)
+
+// Пагинация
+Vue.component('Paginate', Paginate)
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional

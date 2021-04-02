@@ -35,7 +35,6 @@ export default {
     },
 
     async fetchCategoryById ({ dispatch, commit }, id) {
-      console.log('🚀 ~ file: record.js ~ line 38 ~ fetchCategoryById ~ id', id)
       try {
         const uid = await dispatch('getUid')
         const category = (await firebase.database().ref(`/users/${uid}/categories`).child(id).once('value')).val() || {}
