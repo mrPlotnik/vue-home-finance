@@ -4,7 +4,7 @@ div
   .page-title
     h3 История записей
   .history-chart
-    canvas
+    canvas(ref="canvas" responsive="true")
 
   Loader(v-if="loading")
 
@@ -32,12 +32,14 @@ div
 
 import HistoryTable from '@/components/HistoryTable'
 import paginationMixin from '@/mixins/pagination.mixin.js'
+import generateColor from '@/mixins/generateColor.mixin.js'
+import { Doughnut } from 'vue-chartjs'
 
 export default {
 
   name: 'history',
 
-  mixins: [paginationMixin],
+  mixins: [paginationMixin, generateColor, Doughnut],
 
   data: () => ({
     loading: true,
@@ -50,23 +52,53 @@ export default {
     // Загружаем все  с сервера
     const categories = await this.$store.dispatch('fetchCategories')
 
-    this.setupPagination(
-      this.records.map(
-        record => {
-          return {
-            ...record,
-            categoryName: categories.find(c => c.id === record.categoryId).title,
-            typeClass: record.type === 'income' ? 'green' : 'red',
-            typeText: record.type === 'income' ? 'Доход' : 'Расход'
-          }
-        }
-      )
-    )
+    var color = categories.map(this.pastelColors)
+    var bgColor = color.map(c => c + '99')
+
+    this.setup(categories, bgColor)
+
     this.loading = false
   },
 
   components: {
     HistoryTable
+  },
+
+  methods: {
+
+    setup (categories, bgColor) {
+      this.setupPagination(this.records.map(record => {
+        return {
+          ...record,
+          categoryName: categories.find(c => c.id === record.categoryId).title,
+          typeClass: record.type === 'income' ? 'green' : 'red',
+          typeText: record.type === 'income' ? 'Доход' : 'Расход'
+        }
+      }))
+
+      this.renderChart({
+        labels: categories.map(c => c.title),
+        datasets: [{
+          label: 'Расходы по категориям',
+          data: categories.map(c => {
+            return this.records.reduce((total, r) => {
+              if (r.categoryId === c.id && r.type === 'outcome') {
+                total += +r.amount
+              }
+              return total
+            }, 0)
+          }),
+          backgroundColor: bgColor,
+          borderWidth: 2,
+          hoverBorderWidth: 4,
+          borderAlign: 'inner'
+        }]
+      }, {
+        aspectRatio: 1.5,
+        maintainAspectRatio: true
+      })
+    }
+
   }
 
 }
