@@ -13,6 +13,9 @@ import dateFilter from '@/filters/date.filter'
 // Фильтр валют
 import currencyFilter from '@/filters/currency.filter'
 
+// Фильтр Локалей
+import localizeFilter from '@/filters/localize.filter'
+
 // Tooltip директива (всплывашки при наведении)
 import tooltipDirective from '@/directives/tooltip.directive'
 
@@ -50,6 +53,9 @@ Vue.filter('date', dateFilter)
 
 // Регистрируем фильтр для даты
 Vue.filter('currency', currencyFilter)
+
+// Регистрируем фильтр для локалей
+Vue.filter('localize', localizeFilter)
 
 // Регистрируем Tooltip директиву
 Vue.directive('tooltip', tooltipDirective)

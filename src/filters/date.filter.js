@@ -1,3 +1,5 @@
+import store from '../store'
+
 // По умолчанию format = 'date'
 export default function dateFilter (value, format = 'date') {
   const options = {}
@@ -18,7 +20,9 @@ export default function dateFilter (value, format = 'date') {
     options.second = '2-digit'
   }
 
+  const locale = store.getters.info.locale || 'ru-RU'
+
   // Intl.DateTimeFormat - яыкозависимое форматирование даты и времени
   //  В уроке мне не ясно почему автор создает новую дату
-  return new Intl.DateTimeFormat('ru-RU', options).format(new Date(value))
+  return new Intl.DateTimeFormat(locale, options).format(new Date(value))
 }

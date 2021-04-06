@@ -14,7 +14,7 @@ div
       //- Если мы передаем Sidebar`у какую-то модель
       //- То нужно прописать ему параметр props созначение 'value'
       //- 'value' и будет соответствовать состоянию isOpen
-      Sidebar(v-model="isOpen")
+      Sidebar(v-model="isOpen" :key="locale")
 
       //- Байндим класс full (растягиваем на всю длину), если isOpen = false
       main.app-content(:class="{full: !isOpen}")
@@ -69,9 +69,16 @@ export default {
   computed: {
     error () {
       return this.$store.getters.error
+    },
+    locale () {
+      return this.$store.getters.info.locale
     }
   },
+
   watch: {
+    // locale () {
+    //   console.log('PRO')
+    // },
     error (fbError) {
       this.$error(messages[fbError.code] || 'Что-то пошло не так')
     }

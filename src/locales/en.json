@@ -1,0 +1,12 @@
+{
+    "ProfileTitle": "Profile",
+    "Name": "Name",
+    "Message_EnterName": "Enter name",
+    "Update": "Refresh",
+
+    "Menu_Bill": "Bill",
+    "Menu_History": "Historя",
+    "Menu_Planning": "Planning",
+    "Menu_NewRecord": "NewRecord",
+    "Menu_Categories": "Categories"
+}
