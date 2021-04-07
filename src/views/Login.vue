@@ -3,7 +3,7 @@
 //- Ставим прослушку события. Данное событие вызывает перезагрузку страницы, поэтому отменяем стандартное поведение с помощью модификатора ".prevent"
 form.card.auth-card(@submit.prevent="submitHandler")
   .card-content
-    span.card-title Домашняя бухгалтерия
+    span.card-title {{ 'CRM_Title' | localize }}
     .input-field
 
       //- Привязываем модели к инпутам
@@ -17,8 +17,8 @@ form.card.auth-card(@submit.prevent="submitHandler")
         :class="{invalid: ($v.email.$dirty && !$v.email.required) || ($v.email.$dirty && !$v.email.email)}"
       )
       label(for="email") Email
-      small.helper-text.invalid(v-if="$v.email.$dirty && !$v.email.required") Поле Email не должно быть пустым
-      small.helper-text.invalid(v-else-if="$v.email.$dirty && !$v.email.email") Введите корректный Email
+      small.helper-text.invalid(v-if="$v.email.$dirty && !$v.email.required") {{ 'EmailRequire' | localize }}
+      small.helper-text.invalid(v-else-if="$v.email.$dirty && !$v.email.email") {{ 'EmailValid' | localize }}
 
     .input-field
       input#password(
@@ -26,16 +26,16 @@ form.card.auth-card(@submit.prevent="submitHandler")
         v-model.trim="password"
         :class="{invalid: ($v.password.$dirty && !$v.password.required) || ($v.password.$dirty && !$v.password.minLength)}"
       )
-      label(for="password") Пароль
-      small.helper-text.invalid(v-if="$v.password.$dirty && !$v.password.required") Введите пароль
-      small.helper-text.invalid(v-else-if="$v.password.$dirty && !$v.password.minLength") Пароль должен быть минимум {{$v.password.$params.minLength.min}} символов, сейчас он {{password.length}}
+      label(for="password") {{ 'Password' | localize }}
+      small.helper-text.invalid(v-if="$v.password.$dirty && !$v.password.required") {{ 'PasswordRequire' | localize }}
+      small.helper-text.invalid(v-else-if="$v.password.$dirty && !$v.password.minLength") {{ 'PasswordMinLenght' | localize }} {{$v.password.$params.minLength.min}} {{ 'PasswordMinLenghtNow' | localize }} {{password.length}}
   .card-action
     div
       //- Убеждаемся, что у кнопки есть атрибут 'type="submit"' чтобы засабмитить форму
-      button.btn.waves-effect.waves-light.auth-submit(type="submit") Войти
+      button.btn.waves-effect.waves-light.auth-submit(type="submit") {{ 'ButtonTitleLogin' | localize }}
         i.material-icons.right send
-    p.center Нет аккаунта?&nbsp
-      router-link(to="/register")  Зарегистрироваться
+    p.center {{ 'Login_HasAccount' | localize }}
+      router-link(to="/register")  {{ 'Login_Register' | localize }}
 </template>
 
 <script>
@@ -49,6 +49,12 @@ import messages from '@/utils/messages'
 export default {
   // Имя данной страницы
   name: 'login',
+
+  metaInfo () {
+    return {
+      title: this.$title('Login')
+    }
+  },
 
   // Создаем модели для валидации
   data: () => ({

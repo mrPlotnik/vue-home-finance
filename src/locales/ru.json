@@ -1,12 +1,103 @@
 {
-  "ProfileTitle": "Профиль",
-  "Name": "Имя",
-  "Message_EnterName": "Введите имя",
-  "Update": "Обновить",
-
   "Menu_Bill": "Счет",
   "Menu_History": "История",
   "Menu_Planning": "Планирование",
   "Menu_NewRecord": "Новая запись",
-  "Menu_Categories": "Категории"
+  "Menu_Categories": "Категории",
+
+  "Detail_Title": "Детально",
+
+  "Navbar_Profile": "Профиль",
+  "Navbar_Logout": "Выйти",
+
+  "Home_Amount": "Счет",
+
+  "HomeBill_BillInCurrency": "Счет в валюте",
+
+  "HomeCurrency_Rates": "Курс валют",
+  "HomeCurrency_Currency": "Валюта",
+  "HomeCurrency_Rate": "Курс",
+  "HomeCurrency_Date": "Дата",
+
+  "Profile_Head": "Профиль",
+  "Profile_Refresh": "Обновить",
+
+  "Categories_Head": "Категории",
+  "Categories_NoCategories": "Нет категорий",
+
+  "CategoryCreate_Head": "Создать",
+  "CategoryCreate_Input_Name_Label": "Название",
+  "CategoryCreate_Input_Name_FormMessage": "Введите название категории",
+  "CategoryCreate_Input_Limit_Label": "Лимит",
+  "CategoryCreate_Input_Limit_FormMessage_MinLenght": "Минимальная длина",
+  "CategoryCreate_Input_Limit_FormMessage_Require": "Введите значение",
+  "CategoryCreate_Button_Title": "Создать",
+
+  "CategoryEdit_": "Редактировать",
+  "CategoryEdit_SelectCategory": "Выберите категорию",
+  "CategoryEdit_Input_Name_Label": "Название",
+  "CategoryEdit_Input_Name_FormMessage": "Введите название категории",
+  "CategoryEdit_Input_Limit_Label": "Лимит",
+  "CategoryEdit_Input_Limit_FormMessage_MinLenght": "Минимальное значение",
+  "CategoryEdit_Input_Limit_FormMessage_Require": "Введите значение",
+  "CategoryEdit_Button_Title": "Обновить",
+
+  "Detail_History": "История",
+  "Detail_Income": "Приход",
+  "Detail_Outcome": "Расход",
+  "Detail_Description": "Описание",
+  "Detail_Amount": "Сумма",
+  "Detail_Category": "Категория",
+  "Detail_RecordWithID": "Запись с id = ",
+  "Detail_NotFound": " не найдена",
+
+  "History_Head": "История",
+  "History_NoRecords": "Записей пока нет. ",
+  "History_AddRecords": "Добавить первую запись",
+  "History_Back": "Назад",
+  "History_Forward": "Вперед",
+
+  "HistoryTable_Amount": "Сумма",
+  "HistoryTable_Date": "Дата",
+  "HistoryTable_Category": "Категория",
+  "HistorHistoryTable_Type": "Тип",
+  "HistoryTable_Open": "Открыть",
+  "HistoryTable_Tooltip_Open": "Открыть запись",
+
+  "CRM_Title": "Домашняя  бухгалтерия",
+
+  "EmailRequire": "Поле Email не должно быть пустым",
+  "EmailValid": "Введите корректный Email",
+  "Password": "Пароль",
+  "PasswordRequire": "Введите пароль",
+  "PasswordMinLenght": "Пароль должен быть минимум",
+  "PasswordMinLenghtNow": " символов, сейчас он ",
+  "ButtonTitleLogin": "Войти",
+
+  "Login_HasAccount": "Нет аккаунта? ",
+  "Login_Register": "Зарегистрироваться",
+
+  "Register_Name": "Имя",
+  "Register_EnterName": "Введите Ваше имя",
+  "Register_AcceptRules": "С правилами согласен",
+  "Register_Register": "Зарегистрироваться",
+  "Register_HasAccount": "Уже есть аккаунт? ",
+
+  "Planning_Head": "Планирование",
+  "Planning_NoCategories": "Категорий пока нет",
+  "Planning_AddNewCategory": "Добавить новую категорию",
+  "Planning_of": "из",
+
+  "Record_Head": "Новая запись",
+  "Record_NoCategory": "Категорий пока нет",
+  "Record_AddNewCategory": "Добавить новую категорию",
+  "Record_SelectCategory": "Выберите категорию",
+  "Record_Income": "Доход",
+  "Record_Outcome": "Расход",
+  "Record_Amount": "Сумма",
+  "Record_MinValue": "Минимальное значение",
+  "Record_EnterValue": "Введите значение",
+  "Record_Descripton": "Описание",
+  "Record_EnterDescription": "Введите описание",
+  "Record_Create": "Создать"
 }

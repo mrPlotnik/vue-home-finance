@@ -1,7 +1,7 @@
 <template lang="pug">
 div
   .page-title
-    h3 {{ 'ProfileTitle' | localize }}
+    h3 {{ 'Profile_Head' | localize }}
 
   form.form(@submit.prevent="submitHandler")
     .input-field
@@ -10,8 +10,8 @@ div
         v-model="name"
         :class="{invalid: $v.name.$dirty && !$v.name.required}"
       )
-      label(for="description") {{ 'Name' | localize }}
-      small.helper-text.invalid(v-if="$v.name.$dirty && !$v.name.required") {{ 'Message_EnterName' | localize }}
+      label(for="description") {{ 'Register_Name' | localize }}
+      small.helper-text.invalid(v-if="$v.name.$dirty && !$v.name.required") {{ 'Register_EnterName' | localize }}
 
     .switch
       label English
@@ -20,7 +20,7 @@ div
         | Русский
 
     button.btn.waves-effect.waves-light(type="submit")
-      | {{ 'Update' | localize }}
+      | {{ 'Profile_Refresh' | localize }}
       i.material-icons.right send
 </template>
 
@@ -33,6 +33,12 @@ import { required } from 'vuelidate/lib/validators'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
+
+  metaInfo () {
+    return {
+      title: this.$title('ProfileTitle')
+    }
+  },
 
   data: () => ({
     name: '',

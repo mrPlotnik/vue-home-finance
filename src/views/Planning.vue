@@ -1,13 +1,13 @@
 <template lang="pug">
 div
   .page-title
-    h3 Планирование
+    h3 {{ 'Planning_Head' | localize }}
     h4 {{ info.bill | currency('RUB') }}
 
   Loader(v-if="loading")
 
-  p.center(v-else-if="!categories.length") Категорий пока нет
-    router-link(to="/categories") Добавить новую категорию
+  p.center(v-else-if="!categories.length") {{ 'Planning_NoCategories' | localize }}
+    router-link(to="/categories") {{ 'Planning_AddNewCategory' | localize }}
 
   section(v-else)
     div(
@@ -15,8 +15,8 @@ div
       :key="cat.id"
      )
       p
-        strong {{ cat.title }}:&nbsp
-        | {{ cat.spend | currency }} из {{ cat.limit | currency }}
+        strong {{ cat.title }} &nbsp
+        | {{ cat.spend | currency }} {{ 'Planning_of' | localize }} {{ cat.limit | currency }}
       .progress(v-tooltip="cat.tooltip")
         .determinate(
           :class="[cat.progressColor]"
@@ -29,7 +29,15 @@ import { mapGetters } from 'vuex'
 import currencyFilter from '@/filters/currency.filter'
 
 export default {
+
   name: 'planning',
+
+  metaInfo () {
+    return {
+      title: this.$title('Menu_Planning')
+    }
+  },
+
   data: () => ({
     loading: true,
     categories: []

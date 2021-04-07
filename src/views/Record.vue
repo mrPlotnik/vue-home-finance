@@ -1,12 +1,12 @@
 <template lang="pug">
 div
   .page-title
-    h3 Новая запись
+    h3 {{ 'Record_Head' | localize }}
 
   Loader(v-if="loading")
 
-  p.center(v-else-if="!categories.length") Категорий пока нет
-    router-link(to="/categories") Добавить новую категорию
+  p.center(v-else-if="!categories.length") {{ 'Record_NoCategory' | localize }}
+    router-link(to="/categories") {{ 'Record_AddNewCategory' | localize }}
 
   form.form(v-else @submit.prevent="submitHandler")
 
@@ -20,7 +20,7 @@ div
           :key="c.id"
           :value="c.id"
         ) {{ c.title }}
-      label Выберите категорию
+      label {{ 'Record_SelectCategory' | localize }}
     p
       label
         input.with-gap(
@@ -29,7 +29,7 @@ div
           type="radio"
           value="income"
         )
-        span Доход
+        span {{ 'Record_Income' | localize }}
     p
       label
         input.with-gap(
@@ -38,7 +38,7 @@ div
           type="radio"
           value="outcome"
         )
-        span Расход
+        span {{ 'Record_Outcome' | localize }}
 
     .input-field
       input#amount(
@@ -46,13 +46,13 @@ div
         type="number"
         :class="{invalid: ($v.amount.$dirty && !$v.amount.minValue) || ($v.amount.$dirty && !$v.amount.required)}"
       )
-      label(for="amount") Сумма
+      label(for="amount") {{ 'Record_Amount' | localize }}
       span.helper-text.invalid(
         v-if="$v.amount.$dirty && !$v.amount.minValue"
-      ) Минимальное значение {{ $v.amount.$params.minValue.min }}
+      ) {{ 'Record_MinValue' | localize }} {{ $v.amount.$params.minValue.min }}
       span.helper-text.invalid(
          v-else-if="$v.amount.$dirty && !$v.amount.required"
-      ) Введите значение
+      ) {{ 'Record_EnterValue' | localize }}
 
     .input-field
       input#description(
@@ -60,13 +60,13 @@ div
         type="text"
         :class="{invalid: $v.description.$dirty && !$v.description.required}"
       )
-      label(for="description") Описание
+      label(for="description") {{ 'Record_Descripton' | localize }}
       span.helper-text.invalid(
         v-if="$v.description.$dirty && !$v.description.required"
-      ) Введите описание
+      ) {{ 'Record_EnterDescription' | localize }}
 
     button.btn.waves-effect.waves-light(type="submit")
-      | Создать
+      | {{ 'Record_Create' | localize }}
       i.material-icons.right send
 </template>
 
@@ -79,7 +79,15 @@ import { required, minValue } from 'vuelidate/lib/validators'
 import { mapGetters } from 'vuex'
 
 export default {
+
   name: 'record',
+
+  metaInfo () {
+    return {
+      title: this.$title('Menu_NewRecord')
+    }
+  },
+
   data: () => ({
     loading: true,
     // Здесь хранится селект (для правильной отрисовки, через materialize-css)

@@ -1,69 +1,45 @@
 import Vue from 'vue'
 import Vuelidate from 'vuelidate'
 import Paginate from 'vuejs-paginate'
+import VueMeta from 'vue-meta'
 
 import App from './App.vue'
 
 import router from './router'
 import store from './store'
 
-// Фильтр даты
 import dateFilter from '@/filters/date.filter'
-
-// Фильтр валют
 import currencyFilter from '@/filters/currency.filter'
-
-// Фильтр Локалей
 import localizeFilter from '@/filters/localize.filter'
 
-// Tooltip директива (всплывашки при наведении)
 import tooltipDirective from '@/directives/tooltip.directive'
 
-// Пагин сообщений. Тосты vuelidate
 import messagePlugin from '@/utils/message.plugin'
+import titlePlugin from '@/utils/title.plugin'
 
-// ***
 import Loader from './components/app/Loader'
 
-// ***
 import './registerServiceWorker'
 
-// Импортируем firebase
-// И его модули. Для авторизации и базы данных
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/database'
 
-//
 import M from 'materialize-css'
+
 Vue.use(M)
 
 Vue.config.productionTip = false
 
-// Регистрируем плагин "messagePlugin"
 Vue.use(messagePlugin)
-
-// Регистрируем глобально плагин "Vuelidate"
-// Без него не работает $v
+Vue.use(titlePlugin)
 Vue.use(Vuelidate)
-
-// Регистрируем фильтр для даты
-// Теперь он в глобальной области видимости
+Vue.use(VueMeta)
 Vue.filter('date', dateFilter)
-
-// Регистрируем фильтр для даты
 Vue.filter('currency', currencyFilter)
-
-// Регистрируем фильтр для локалей
 Vue.filter('localize', localizeFilter)
-
-// Регистрируем Tooltip директиву
 Vue.directive('tooltip', tooltipDirective)
-
-// Регистрируем глобально Loader.vue
 Vue.component('Loader', Loader)
-
-// Пагинация
 Vue.component('Paginate', Paginate)
 
 // Your web app's Firebase configuration

@@ -3,7 +3,7 @@
 //- Ставим прослушку события. Данное событие вызывает перезагрузку страницы, поэтому отменяем стандартное поведение с помощью модификатора ".prevent"
 form.card.auth-card(@submit.prevent="submitHandler")
   .card-content
-    span.card-title Домашняя бухгалтерия
+    span.card-title {{ 'CRM_Title' | localize }}
 
     .input-field
 
@@ -18,8 +18,8 @@ form.card.auth-card(@submit.prevent="submitHandler")
         :class="{invalid: ($v.email.$dirty && !$v.email.required) || ($v.email.$dirty && !$v.email.email)}"
       )
       label(for="email") Email
-      small.helper-text.invalid(v-if="$v.email.$dirty && !$v.email.required") Поле Email не должно быть пустым
-      small.helper-text.invalid(v-else-if="$v.email.$dirty && !$v.email.email") Введите корректный Email
+      small.helper-text.invalid(v-if="$v.email.$dirty && !$v.email.required") {{ 'EmailRequire' | localize }}
+      small.helper-text.invalid(v-else-if="$v.email.$dirty && !$v.email.email") {{ 'EmailValid' | localize }}
 
     .input-field
 
@@ -28,9 +28,9 @@ form.card.auth-card(@submit.prevent="submitHandler")
         v-model.trim="password"
         :class="{invalid: ($v.password.$dirty && !$v.password.required) || ($v.password.$dirty && !$v.password.minLength)}"
       )
-      label(for="password") Пароль
-      small.helper-text.invalid(v-if="$v.password.$dirty && !$v.password.required") Введите пароль
-      small.helper-text.invalid(v-else-if="$v.password.$dirty && !$v.password.minLength") Пароль должен быть минимум {{$v.password.$params.minLength.min}} символов, сейчас он {{password.length}}
+      label(for="password") {{ 'Password' | localize }}
+      small.helper-text.invalid(v-if="$v.password.$dirty && !$v.password.required") {{ 'PasswordRequire' | localize }}
+      small.helper-text.invalid(v-else-if="$v.password.$dirty && !$v.password.minLength") {{ 'PasswordMinLenght' | localize }} {{$v.password.$params.minLength.min}} {{ 'PasswordMinLenghtNow' | localize }} {{password.length}}
 
     .input-field
 
@@ -39,20 +39,20 @@ form.card.auth-card(@submit.prevent="submitHandler")
         v-model.trim="name"
         :class="{invalid: $v.name.$dirty && !$v.name.required}"
         )
-      label(for="name") Имя
-      small.helper-text.invalid(v-if="$v.name.$dirty && !$v.name.required") Введите Ваше имя
+      label(for="name") {{ 'Register_Name' | localize }}
+      small.helper-text.invalid(v-if="$v.name.$dirty && !$v.name.required") {{ 'Register_Name' | localize }}
 
     p
       label
         input(type="checkbox" v-model="$v.agree.$model")
-        span С правилами согласен
+        span {{ 'Register_AcceptRules' | localize }}
 
   .card-action
     div
-      button.btn.waves-effect.waves-light.auth-submit(type="submit") Зарегистрироваться
+      button.btn.waves-effect.waves-light.auth-submit(type="submit") {{ 'Register_Register' | localize }}
         i.material-icons.right send
-    p.center Уже есть аккаунт?
-      router-link(to="/login") Войти!
+    p.center {{ 'Register_HasAccount' | localize }}
+      router-link(to="/login") {{ 'ButtonTitleLogin' | localize }}
 
 </template>
 <script>
@@ -62,6 +62,12 @@ import { email, required, minLength } from 'vuelidate/lib/validators'
 export default {
   // Имя данной страницы
   name: 'register',
+
+  metaInfo () {
+    return {
+      title: this.$title('Register')
+    }
+  },
 
   // Создаем модели для валидации
   data: () => ({

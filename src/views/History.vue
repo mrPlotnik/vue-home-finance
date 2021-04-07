@@ -2,14 +2,14 @@
 
 div
   .page-title
-    h3 История записей
+    h3 {{ 'History_Head' | localize }}
   .history-chart
     canvas(ref="canvas" responsive="true")
 
   Loader(v-if="loading")
 
-  p.center(v-else-if="!records.length") Записей пока нет
-    router-link(to="/record") Добавьте первую
+  p.center(v-else-if="!records.length") {{ 'History_NoRecords' | localize }}
+    router-link(to="/record") {{ 'History_AddRecords' | localize }}
 
   section(v-else)
     HistoryTable(
@@ -20,8 +20,8 @@ div
       v-model="page"
       :page-count="pageCount"
       :click-handler="pageChangeHandler"
-      :prev-text="'Назад'"
-      :next-text="'Вперед'"
+      :prev-text="'History_Back' | localize"
+      :next-text="'History_Forward' | localize"
       :container-class="'pagination'"
       :page-class="'waves-effect'"
     )
@@ -38,6 +38,12 @@ import { Doughnut } from 'vue-chartjs'
 export default {
 
   name: 'history',
+
+  metaInfo () {
+    return {
+      title: this.$title('Menu_History')
+    }
+  },
 
   mixins: [paginationMixin, generateColor, Doughnut],
 

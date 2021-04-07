@@ -1,4 +1,5 @@
 /* global M */
+import localizeFilter from '@/filters/localize.filter'
 
 // Регистрируем пользовательскую директиву
 
@@ -9,7 +10,8 @@ export default {
   // Второй параметр - значение, переданное в директиву
   bind (el, { value }) {
     // Инициализация tooltip
-    M.Tooltip.init(el, { html: value })
+    var localize = localizeFilter(value)
+    M.Tooltip.init(el, { html: localize })
   },
 
   // Хук unbind вызывается однократно, при отвязывании директивы от элемента

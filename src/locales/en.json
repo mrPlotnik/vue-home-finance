@@ -1,12 +1,104 @@
 {
-    "ProfileTitle": "Profile",
-    "Name": "Name",
-    "Message_EnterName": "Enter name",
-    "Update": "Refresh",
-
     "Menu_Bill": "Bill",
-    "Menu_History": "Historя",
+    "Menu_History": "History",
     "Menu_Planning": "Planning",
     "Menu_NewRecord": "NewRecord",
-    "Menu_Categories": "Categories"
+    "Menu_Categories": "Categories",
+
+    "Detail_Title": "Detail",
+
+    "Navbar_Profile": "Profile",
+    "Navbar_Logout": "Logout",
+
+    "Home_Amount": "Amount",
+
+    "HomeBill_BillInCurrency": "Bill in currency",
+
+    "HomeCurrency_Rates": "Currencies rates",
+    "HomeCurrency_Currency": "Currency",
+    "HomeCurrency_Rate": "Rate",
+    "HomeCurrency_Date": "Date",
+
+    "Profile_Head": "Profile",
+    "Profile_Refresh": "Refresh",
+
+    "Categories_Head": "Categories",
+    "Categories_NoCategories": "No categories",
+
+    "CategoryCreate_Head": "Create",
+    "CategoryCreate_Input_Name_Label": "Title",
+    "CategoryCreate_Input_Name_FormMessage": "Enter сategory тame",
+    "CategoryCreate_Input_Limit_Label": "Limit",
+    "CategoryCreate_Input_Limit_FormMessage_MinLenght": "Mininum length is",
+    "CategoryCreate_Input_Limit_FormMessage_Require": "Enter value",
+    "CategoryCreate_Button_Title": "Create",
+
+    "CategoryEdit_Head": "Edit",
+    "CategoryEdit_SelectCategory": "Select category",
+    "CategoryEdit_Input_Name_Label": "Title",
+    "CategoryEdit_Input_Name_FormMessage": "Enter сategory name",
+    "CategoryEdit_Input_Limit_Label": "Limit",
+    "CategoryEdit_Input_Limit_FormMessage_MinLenght": "Mininum length is",
+    "CategoryEdit_Input_Limit_FormMessage_Require": "Enter value",
+    "CategoryEdit_Button_Title": "Refresh",
+
+    "Detail_History": "History",
+    "Detail_Income": "Income",
+    "Detail_Outcome": "Outcome",
+    "Detail_Description": "Description",
+    "Detail_Amount": "Amount",
+    "Detail_Category": "Category",
+    "Detail_RecordWithID": "Record width id = ",
+    "Detail_NotFound": " not found",
+
+    "History_Head": "History",
+    "History_NoRecords": "No records. ",
+    "History_AddRecords": " Add first record",
+    "History_Back": "Back",
+    "History_Forward": "Forward",
+
+    "HistoryTable_Amount": "Amount",
+    "HistoryTable_Date": "Date",
+    "HistoryTable_Category": "Category",
+    "HistoryTable_Type": "Type",
+    "HistoryTable_Open": "Open",
+    "HistoryTable_Tooltip_Open": "Open record",
+
+    "CRM_Title": "CRM by Plotnik",
+
+    "EmailRequire": "Email field is required",
+    "EmailValid": "Enter valid email",
+    "Password": "Password",
+    "PasswordRequire": "Enter Password",
+    "PasswordMinLenght": "Password must be min",
+    "PasswordMinLenghtNow": " symbols, now ",
+    "ButtonTitleLogin": "Login",
+
+    "Login_HasAccount": "Has no account? ",
+    "Login_Register": "Register",
+
+    "Planning_Head": "Planning",
+    "Planning_NoCategories": "No categories",
+    "Planning_AddNewCategory": "Add new category",
+    "Planning_of": "of",
+
+    "Register_Name": "Name",
+    "Register_EnterName": "Enter your name",
+    "Register_AcceptRules": "Agree with rules",
+    "Register_Register": "Register",
+    "Register_HasAccount": "Has account? ",
+
+    "Record_Head": "New Record",
+    "Record_NoCategory": "No category",
+    "Record_AddNewCategory": "Add new category",
+    "Record_SelectCategory": "Select category",
+    "Record_Income": "Income",
+    "Record_Outcome": "Outcome",
+    "Record_Amount": "Amount",
+    "Record_MinValue": "Min value",
+    "Record_EnterValue": "Enter value",
+    "Record_Descripton": "Description",
+    "Record_EnterDescription": "Enter Description",
+    "Record_Create": "Create"
+
 }

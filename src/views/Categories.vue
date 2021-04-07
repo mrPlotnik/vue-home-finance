@@ -2,7 +2,7 @@
 
 div
   .page-title
-    h3 Категории
+    h3 {{ 'Categories_Head' | localize }}
   section
 
     Loader(v-if="loading")
@@ -24,7 +24,7 @@ div
         @updated="updateCategories"
         )
 
-      p.center(v-else) Категорий пока нет
+      p.center(v-else) {{ 'Categories_NoCategories' | localize }}
 
 </template>
 
@@ -37,6 +37,12 @@ import CategoryEdit from '@/components/CategoryEdit'
 export default {
 
   name: 'categories',
+
+  metaInfo () {
+    return {
+      title: this.$title('Menu_Categories')
+    }
+  },
 
   data: () => ({
     categories: [],

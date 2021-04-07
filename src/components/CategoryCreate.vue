@@ -3,7 +3,7 @@
 .col.s12.m6
   div
     .page-subtitle
-      h4 Создать
+      h4 {{ 'CategoryCreate_Head' | localize }}
 
     form(@submit.prevent="submitHandler")
 
@@ -14,11 +14,11 @@
           :class="{invalid: $v.title.$dirty && !$v.title.required}"
         )
 
-        label(for="name") Название
+        label(for="name") {{ 'CategoryCreate_Input_Name_Label'|localize }}
 
         span.helper-text.invalid(
           v-if="$v.title.$dirty && !$v.title.required"
-        ) Введите название категории
+        ) {{ 'CategoryCreate_Input_Name_FormMessage' | localize }}
 
       .input-field
         input#limit(
@@ -27,18 +27,18 @@
           :class="{invalid: ($v.limit.$dirty && !$v.limit.minValue) || !$v.limit.required}"
         )
 
-        label(for="limit") Лимит
+        label(for="limit") {{ 'CategoryCreate_Input_Limit_Label' | localize }}
 
         span.helper-text.invalid(
           v-if="$v.limit.$dirty && !$v.limit.minValue"
-        ) Минимальное значение {{ $v.limit.$params.minValue.min }}
+        ) {{ 'CategoryCreate_Input_Limit_FormMessage_MinLenght' | localize }} {{ $v.limit.$params.minValue.min }}
 
         span.helper-text.invalid(
           v-else-if="!$v.limit.required"
-        ) Введите значение
+        ) {{ 'CategoryCreate_Input_Limit_FormMessage_Require' | localize }}
 
       button.btn.waves-effect.waves-light(type="submit")
-        | Создать
+        | {{ 'CategoryCreate_Button_Title' | localize }}
         i.material-icons.right send
 
 </template>

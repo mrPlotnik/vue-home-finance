@@ -1,8 +1,8 @@
 <template lang="pug">
 .col.s12.m6.l4
-  .card.light-blue.bill-card
+  .card.light-blue
     .card-content.white-text
-      span.card-title Счет в валюте
+      span.card-title {{ 'HomeBill_BillInCurrency' | localize }}
       p.currency-line(
         v-for="cur in currencies"
         :key="cur"
@@ -17,14 +17,14 @@ export default {
   props: ['rates'],
 
   data: () => ({
-    currencies: ['RUB', 'USD', 'EUR']
+    currencies: ['RUB', 'USD', 'EUR', 'GBP']
   }),
 
   computed: {
 
     // Сейчас основная валюта это EUR, исправляем на RUB
     base () {
-      return this.$store.getters.info.bill / (this.rates.RUB / this.rates.EUR)
+      return this.$store.getters.info.bill / this.rates.RUB
     }
 
   },

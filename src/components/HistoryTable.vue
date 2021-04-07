@@ -3,12 +3,12 @@
   table
     thead
       tr
-        th №
-        th Сумма
-        th Дата
-        th Категория
-        th Тип
-        th Открыть
+        th #
+        th {{ 'HistoryTable_Amount' | localize }}
+        th {{ 'HistoryTable_Date' | localize }}
+        th {{ 'HistoryTable_Category' | localize }}
+        th {{ 'HistoryTable_Type' | localize }}
+        th {{ 'HistoryTable_Open' | localize }}
     tbody
       tr(
         v-for="(record,idx) in records"
@@ -23,7 +23,7 @@
         td
           button.btn-small.btn(
             @click="$router.push('/detail/' + record.id)"
-            v-tooltip="'Посмотреть запись'"
+            v-tooltip="'HistoryTable_Tooltip_Open'"
             )
             i.material-icons open_in_new
 

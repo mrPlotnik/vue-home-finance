@@ -1,7 +1,7 @@
 <template lang="pug">
 .home
   .page-title
-    h3 Счет
+    h3 {{ 'Home_Amount' | localize }}
     button.btn.waves-effect.waves-light.btn-small(@click="refresh")
       i.material-icons refresh
 
@@ -11,8 +11,8 @@
 
     //- Передаем компоненту данные которые мы получили с сервера
     //- По этому необходимо принять его внутри компонента
-    HomeBill(:rates="currency.rates")
-    HomeCurrency(:rates="currency.rates" :date="currency.date")
+    HomeBill(:rates="currency.conversion_rates")
+    HomeCurrency(:rates="currency.conversion_rates" :date="currency.time_last_update_utc")
 
 </template>
 
@@ -25,6 +25,13 @@ import HomeCurrency from '@/components/HomeCurrency'
 export default {
 
   name: 'Home',
+
+  metaInfo () {
+    return {
+      title: this.$title('Menu_Bill')
+    }
+  },
+
   data: () => ({
     loading: true,
     currency: null
@@ -34,6 +41,7 @@ export default {
     // Загружаем котировки валют с сайта fixer.io
     // Экшн fethCurrency прописан в index.js
     this.currency = await this.$store.dispatch('fetchCurrency')
+    console.log('🚀 ~ file: Home.vue ~ line 44 ~ mounted ~ currency', this.currency)
     // Выключаем лоадер
     this.loading = false
   },
@@ -43,7 +51,6 @@ export default {
     async refresh () {
       this.loading = true
       this.currency = await this.$store.dispatch('fetchCurrency')
-      console.log('refresh')
       this.loading = false
     }
 

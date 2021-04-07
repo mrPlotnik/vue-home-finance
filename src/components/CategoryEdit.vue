@@ -2,7 +2,7 @@
   .col.s12.m6
       div
         .page-subtitle
-          h4 Редактировать
+          h4 {{ 'CategoryEdit_Head' | localize }}
 
         form(@submit.prevent="submitHandler")
 
@@ -16,7 +16,7 @@
                 :key="c.id"
                 :value="c.id"
               ) {{ c.title }}
-            label Выберите категорию
+            label {{ 'CategoryEdit_SelectCategory' | localize }}
 
           .input-field
             input#name(
@@ -24,10 +24,10 @@
               v-model.trim="title"
               :class="{invalid: $v.title.$dirty && !$v.title.required}"
             )
-            label(for="name") Название
+            label(for="name") {{ 'CategoryEdit_Input_Name_Label' | localize }}
             span.helper-text.invalid(
               v-if="$v.title.$dirty && !$v.title.required"
-            ) Введите название категории
+            ) {{ 'CategoryEdit_Input_Name_FormMessage' | localize }}
 
           .input-field
             input#limit(
@@ -35,16 +35,16 @@
               v-model.number="limit"
               :class="{invalid: ($v.limit.$dirty && !$v.limit.minValue) || ($v.limit.$dirty && !$v.limit.required)}"
             )
-            label(for="limit") Лимит
+            label(for="limit") {{ 'CategoryEdit_Input_Limit_Label' | localize }}
             span.helper-text.invalid(
               v-if="$v.limit.$dirty && !$v.limit.minValue"
-            ) Минимальное значение {{ $v.limit.$params.minValue.min }}
+            ) {{ 'CategoryEdit_Input_Limit_FormMessage_MinLenght' | localize }} {{ $v.limit.$params.minValue.min }}
             span.helper-text.invalid(
               v-else-if="$v.limit.$dirty && !$v.limit.required"
-            ) Введите значение
+            ) {{ 'CategoryEdit_Input_Limit_FormMessage_Require' | localize }}
 
           button.btn.waves-effect.waves-light(type="submit")
-            | Обновить
+            | {{ 'CategoryEdit_Button_Title' | localize }}
             i.material-icons.right send
 </template>
 

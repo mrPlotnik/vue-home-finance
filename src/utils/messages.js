@@ -3,7 +3,7 @@ export default {
   login: 'Для начала войдите в систему',
 
   // Проверка кодов из EmptyLayout
-  'auth/user-not-found': 'Пользователя с таким email не существует',
-  'auth/wrong-password': 'Неверный пароль',
-  'auth/email-already-in-use': 'Email  уже занят'
+  'auth/user-not-found': 'NoUseWithEmail',
+  'auth/wrong-password': 'WrongPassword',
+  'auth/email-already-in-use': 'EmailInUse'
 }

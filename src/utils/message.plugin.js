@@ -1,5 +1,4 @@
 /* global M */
-/* eslint no-undef: "error" */
 
 export default {
 
