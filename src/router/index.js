@@ -83,7 +83,7 @@ router.beforeEach((to, from, next) => {
   // Сначала необходимо понять, если у пользователя авторицация
   const currentUser = firebase.auth().currentUser
   // Далее проверяем требует ли текущий роут авторизации
-  const requiredAuth = to.matched.some(record => record.meta.auth)
+  const requiredAuth = to.matched.some(r => r.meta.auth)
 
   // Проверяем, если текущий роут требует авторизации и нет авторизованного пользователя, то...
   if (requiredAuth && !currentUser) {

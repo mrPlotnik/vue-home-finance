@@ -33,7 +33,7 @@
   "CategoryCreate_Input_Limit_FormMessage_Require": "Введите значение",
   "CategoryCreate_Button_Title": "Создать",
 
-  "CategoryEdit_": "Редактировать",
+  "CategoryEdit_Head": "Редактировать",
   "CategoryEdit_SelectCategory": "Выберите категорию",
   "CategoryEdit_Input_Name_Label": "Название",
   "CategoryEdit_Input_Name_FormMessage": "Введите название категории",
@@ -60,7 +60,7 @@
   "HistoryTable_Amount": "Сумма",
   "HistoryTable_Date": "Дата",
   "HistoryTable_Category": "Категория",
-  "HistorHistoryTable_Type": "Тип",
+  "HistoryTable_Type": "Тип",
   "HistoryTable_Open": "Открыть",
   "HistoryTable_Tooltip_Open": "Открыть запись",
 
@@ -76,6 +76,7 @@
 
   "Login_HasAccount": "Нет аккаунта? ",
   "Login_Register": "Зарегистрироваться",
+  "Or_Use": "Или используйте",
 
   "Register_Name": "Имя",
   "Register_EnterName": "Введите Ваше имя",

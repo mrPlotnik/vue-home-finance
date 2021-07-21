@@ -35,7 +35,9 @@ form.card.auth-card(@submit.prevent="submitHandler")
       button.btn.waves-effect.waves-light.auth-submit(type="submit") {{ 'ButtonTitleLogin' | localize }}
         i.material-icons.right send
     p.center {{ 'Login_HasAccount' | localize }}
-      router-link(to="/register")  {{ 'Login_Register' | localize }}
+      router-link.m-0(to="/register")  {{ 'Login_Register' | localize }}
+    p.center {{ 'Or_Use' | localize }} test@test.ru/111111
+
 </template>
 
 <script>
@@ -101,3 +103,8 @@ export default {
   }
 }
 </script>
+
+<style lang="sass" scoped>
+  .m-0
+    margin: 0 !important
+</style>

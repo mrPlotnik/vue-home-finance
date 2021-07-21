@@ -1,6 +1,7 @@
 <template lang="pug">
 div
 
+  //- Лоадер
   Loader(v-if="loading")
 
   div(v-else)
