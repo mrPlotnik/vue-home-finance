@@ -14,8 +14,7 @@ Using:
   - Pug
   - SASS,
   - Materialize CSS,
-  - Git,
-  - REST API Swagger.
+  - Git.
 
 The user can execute on the site actions:
 - Create and edit categories,
