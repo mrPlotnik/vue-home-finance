@@ -1,5 +1,31 @@
-# vue-new-pro
+# 💵 📈 CRM-system for accounting of income and expenses "Home Bookkeeping".
 
+Using:
+  - Vue CLI,
+  - Vue Router,
+  - Vuex,
+  - Vue Meta,
+  - Vuelidate,
+  - FireBase
+  - ESLint (airbnb),
+  - Babel,
+  - Mixins,
+  - Lodash,
+  - Pug
+  - SASS,
+  - Materialize CSS,
+  - Git,
+  - REST API Swagger.
+
+The user can execute on the site actions:
+- Create and edit categories,
+- Create expenses and incomes by category, with comments added,
+- Set limits and plan
+- View transaction history
+- View each operation on the detail page,
+- View the current exchange rate,
+- View your balance in different currencies.
+  
 ## Project setup
 ```
 npm install
@@ -19,11 +45,3 @@ npm run build
 ```
 npm run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-
-
-materialize-css подключается отдельно в каждом нужном компоненте. Надо найти решение исправить это
-
-Не забыть создать файл .env в конрне с ключом от fixer.io
